@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #Qt5 & Python dec2bin
-#03.04.2022
 #Ivan Dzido
+
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QSlider
 from PyQt5.QtCore import Qt, QSize, QTimer
@@ -20,10 +20,8 @@ class MyWindow(QMainWindow): #Konstruktor in Python
         wid = QtWidgets.QWidget(self)
         self.setCentralWidget(wid)
         # Layout zusammenbauen
-        vbox= QVBoxLayout()
+        vbox = QtWidgets.QVBoxLayout()
         wid.setLayout(vbox)
-        sliderbox= QHBoxLayout()
-        wid.setLayout(sliderbox)
         
         # Slider + Label Anzeige Dezimalwert
         self.slider = QSlider(Qt.Horizontal,wid)
@@ -32,14 +30,19 @@ class MyWindow(QMainWindow): #Konstruktor in Python
         self.slider.setTickPosition(QSlider.TicksBothSides)
         self.slider.valueChanged[int].connect(self.setValue)
         self.label = QLabel('0')
+        
+        # Sliderbox
+        sliderbox = QHBoxLayout()
         sliderbox.addWidget(self.slider)
         sliderbox.addWidget(self.label)
         vbox.addLayout(sliderbox)
         
         # Labels fuer 4 Bits
         self.bitlabels = [QLabel("8"), QLabel("4"), QLabel("2"), QLabel("1")]
-        bitbox = QHBoxLayout()     
-        vboxBitboxes= QVBoxLayout()
+        bitbox = QHBoxLayout()
+        
+        
+        vboxBitboxes = QVBoxLayout()
         vboxBitboxes.addLayout(bitbox)
         vboxBitboxes.setAlignment(Qt.AlignCenter)
         vbox.addLayout(vboxBitboxes)
